@@ -18,6 +18,8 @@
     "/etc/ssh/ssh_host_rsa_key.pub"
   ];
 
+  fileSystems."/persist".neededForBoot = true;
+
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     set -x
     waitDevice /dev/vda2

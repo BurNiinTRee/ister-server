@@ -1,0 +1,11 @@
+keys:
+  - &larstop2 age1xu8xmg3g7p0rcy769q4c4z0gymxgsmngs0n3fg6y089ms626qsrsd0n6q6
+  - &ister age1fvwa4vw2egthlfpuy876exlvg9f7trd09qxx759xujaju56kmy8q732yhz
+
+
+creation_rules:
+  - path_regex: secrets.yaml
+    key_groups:
+    - age:
+      - *larstop2
+      - *ister
