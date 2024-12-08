@@ -1,10 +1,7 @@
-{
-  lib,
-  ...
-}: {
+{lib, ...}: {
   imports = [
-    (lib.mkAliasOptionModule [ "persist" "directories" ] [ "environment" "persistence" "/persist/root" "directories"])
-    (lib.mkAliasOptionModule [ "persist" "files" ] [ "environment" "persistence" "/persist/root" "files"])
+    (lib.mkAliasOptionModule ["persist" "directories"] ["environment" "persistence" "/persist/root" "directories"])
+    (lib.mkAliasOptionModule ["persist" "files"] ["environment" "persistence" "/persist/root" "files"])
   ];
 
   persist.directories = [
@@ -18,13 +15,18 @@
     "/etc/ssh/ssh_host_rsa_key.pub"
   ];
 
+  systemd.services.sshd = {
+    after = ["local-fs.target"];
+    requires = ["local-fs.target"];
+  };
+
   fileSystems."/persist".neededForBoot = true;
 
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     set -x
-    waitDevice /dev/vda2
+    waitDevice /dev/sda2
     mkdir /mnt
-    mount /dev/vda2 /mnt
+    mount /dev/sda2 /mnt
     btrfs subvolume delete /mnt/root/var/lib/portables
     btrfs subvolume delete /mnt/root/var/lib/machines
     btrfs subvolume delete /mnt/root/tmp

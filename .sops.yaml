@@ -4,7 +4,7 @@ keys:
 
 
 creation_rules:
-  - path_regex: secrets.yaml
+  - path_regex: ^secrets.yaml$|^ister.local/.*$
     key_groups:
     - age:
       - *larstop2
