@@ -10,8 +10,8 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./disko-config.nix
-    # ./impermanence.nix
-    # ./keycloak.nix
+    ./impermanence.nix
+    ./keycloak.nix
     # ./discourse.nix
     ./nginx.nix
   ];
@@ -59,7 +59,7 @@
   };
 
   sops.defaultSopsFile = ./secrets.yaml;
-  # sops.age.sshKeyPaths = ["/persist/root/etc/ssh/ssh_host_ed25519_key"];
+  sops.age.sshKeyPaths = ["/persist/root/etc/ssh/ssh_host_ed25519_key"];
   sops.gnupg.sshKeyPaths = [];
 
   # Open ports in the firewall.

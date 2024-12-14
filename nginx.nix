@@ -13,5 +13,14 @@
     recommendedProxySettings = true;
   };
 
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "lars@muehml.eu";
+  };
+
+  persist.directories = [
+    "/var/lib/acme"
+  ];
+
   networking.firewall.allowedTCPPorts = [80 443];
 }
