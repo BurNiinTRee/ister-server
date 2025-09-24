@@ -11,9 +11,10 @@
     ./hardware-configuration.nix
     ./disko-config.nix
     ./impermanence.nix
-    ./keycloak.nix
+    # ./keycloak.nix
     # ./discourse.nix
-    ./nginx.nix
+    # ./nginx.nix
+    ./minecraft.nix
   ];
 
   # Use the systemD boot loader.
@@ -33,7 +34,7 @@
   users.users.user = {
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN5s+IKT2XS2IpsKLXhhBydhBXVbfY3k2Ep8yhPqtB2z user@larstop2"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAgevajch6O5ZQYWubHgaRZPnhrFM937mjUQO4gT+Bnr user@bluefin"
     ];
     hashedPassword = "$y$j9T$AhEVFB34jem1syXXY.Miu/$in1y.nOuhhjDAbwQosxHmUQphnQAHwo2W9UoMcNV7w/";
     extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
