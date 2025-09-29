@@ -14,7 +14,7 @@
     };
   };
 
-  systemd.services.minecraft-server-create.unitConfig.TimeoutStartUSec = "5min";
+  systemd.services.minecraft-server-create.unitConfig.TimeoutStartSec = "300";
 
   persist.directories = [
     config.services.minecraft-server.dataDir
