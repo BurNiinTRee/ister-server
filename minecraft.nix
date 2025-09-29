@@ -9,10 +9,6 @@
       create = {
         enable = true;
         package = pkgs.neoforgeServers.neoforge-21_1;
-        symlinks = {
-          config = ./JustCreateSmp/config;
-          mods = ./JustCreateSmp/mods;
-        };
       };
     };
   };
