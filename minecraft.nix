@@ -8,7 +8,7 @@
     servers = {
       create = {
         enable = true;
-        package = pkgs.neoforge-servers_1_21_1;
+        package = pkgs.neoforgeServers.neoforge-21_1;
         symlinks = {
           config = ./JustCreateSmp/config;
           mods = ./JustCreateSmp/mods;
