@@ -20,4 +20,6 @@
     config.services.minecraft-server.dataDir
     config.services.minecraft-servers.dataDir
   ];
+
+  networking.firewall.allowedUDPPorts = [ 24454 ];
 }
