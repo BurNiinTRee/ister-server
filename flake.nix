@@ -23,7 +23,7 @@
       nix-minecraft,
     }:
     {
-      nixosConfigurations.ister = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.isterbandet1 = nixpkgs.lib.nixosSystem {
         modules = [
           ./configuration.nix
           impermanence.nixosModules.impermanence
