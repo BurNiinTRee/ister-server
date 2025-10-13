@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
   services.minecraft-servers = {
@@ -15,6 +15,12 @@
   };
 
   systemd.services.minecraft-server-create.serviceConfig.TimeoutStartSec = "300";
+
+  environment.systemPackages = [pkgs.tmux (pkgs.writeShellScriptBin "minecraft-server-console-create" ''
+    read -p "You can close the minecraft server console with Ctrl+B followed by D. Continue with Enter.
+    "
+    exec ${lib.getBin pkgs.tmux}/bin/tmux -S /run/minecraft/create.sock attach
+  '')];
 
   persist.directories = [
     config.services.minecraft-server.dataDir
