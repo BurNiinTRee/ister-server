@@ -9,7 +9,7 @@
       create = {
         enable = true;
         package = pkgs.neoforgeServers.neoforge-21_1;
-        jvmOpts = "-Xms2G -Xmx3G";
+        jvmOpts = "-Xms6G -Xmx7G";
       };
     };
   };
