@@ -1,31 +1,10 @@
 { config, lib, pkgs, ... }:
 {
-  nixpkgs.config.allowUnfree = true;
-  services.minecraft-servers = {
-    enable = true;
-    eula = true;
-    openFirewall = true;
-    servers = {
-      create = {
-        enable = true;
-        package = pkgs.neoforgeServers.neoforge-21_1;
-        jvmOpts = "-Xms6G -Xmx7G";
-      };
-    };
+  networking.firewall.allowedUDPPorts = [ 24454 25565 ];
+  networking.firewall.allowedTCPPorts = [ 25565 ];
+
+  systemd.services.gate = {
+    wantedBy = ["multi-user.target"];
+    script = ''${pkgs.gate}/bin/gate -c ${./gate-config.yaml}'';
   };
-
-  systemd.services.minecraft-server-create.serviceConfig.TimeoutStartSec = "300";
-
-  environment.systemPackages = [pkgs.tmux (pkgs.writeShellScriptBin "minecraft-server-console-create" ''
-    read -p "You can close the minecraft server console with Ctrl+B followed by D. Continue with Enter.
-    "
-    exec ${lib.getBin pkgs.tmux}/bin/tmux -S /run/minecraft/create.sock attach
-  '')];
-
-  persist.directories = [
-    config.services.minecraft-server.dataDir
-    config.services.minecraft-servers.dataDir
-  ];
-
-  networking.firewall.allowedUDPPorts = [ 24454 ];
 }
