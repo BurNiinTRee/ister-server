@@ -2,7 +2,7 @@
 {
   nixpkgs.config.allowUnfree = true;
   services.minecraft-servers = {
-    enable = true;
+    enable = false;
     eula = true;
     openFirewall = true;
     servers = {
@@ -27,5 +27,10 @@
     config.services.minecraft-servers.dataDir
   ];
 
-  networking.firewall.allowedUDPPorts = [ 24454 ];
+  networking.firewall.allowedUDPPorts = [ 24454 25565 ];
+
+  systemd.services.gate = {
+    wantedBy = ["multi-user.target"];
+    script = ''${pkgs.gate}/bin/gate -c ${./gate-config.yaml}'';
+  };
 }
